@@ -8,7 +8,7 @@ export type WinBoxControlInfo = {
   /** a name to identify the button, can also style it by using css, may starts with `wb-` */
   class: string
   /** an image resource same like icon prop */
-  image: string
+  image: string 
   click?: () => void,
 }
 
@@ -26,6 +26,7 @@ export type WinBoxPropType = {
    */
   icon?: string
   id?: string
+  root?: Node
   children?: ReactElement | ReactElement[] | null
   /**
    * When you use this, the children elements will be ignored.
@@ -158,6 +159,7 @@ class WinBox extends Component<WinBoxPropType, WinBoxState> {
       if (this.props.id !== undefined && this.props.id !== null && document.getElementById(this.props.id))
         throw 'duplicated window id';
       this.winBoxObj = OriginalWinBox.new({
+        root: this.props.root ?? document.body,
         width: 300,
         height: 200,
         top: 0,
@@ -174,7 +176,7 @@ class WinBox extends Component<WinBoxPropType, WinBoxState> {
         maxheight: this.props.maxHeight ?? 2147483647,
         max: false, // wait for creating
         min: false, // wait for creating
-        fullscreen: false, // wait for creating
+        // fullscreen: false, // wait for creating
         class: `${this.props.className ?? ''}`,
         onclose: (force?: boolean) => {
           if (this.props.onClose?.(force ?? false)) {
