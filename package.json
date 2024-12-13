@@ -12,7 +12,7 @@
   "types": "dist/index.d.ts",
   "license": "MIT",
   "dependencies": {
-    "winbox": "=0.2.6"
+    "winbox": "git+https://github.com/Tomortec/winbox.git"
   },
   "peerDependencies": {
     "react": ">=16.14.0",
